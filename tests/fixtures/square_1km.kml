@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A 1 km x 1 km square defined in UTM zone 33N (EPSG:32633, x 500000..501000,
+  y 4980000..4981000) and converted to WGS84 lon/lat. Expected geodesic area is
+  ~1,000,800 m^2 (the extra 0.08% comes from the UTM scale factor 0.9996).
+-->
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>square_1km</name>
+    <Placemark>
+      <name>Square 1km</name>
+      <description>1 km x 1 km test square</description>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              15.000000000,44.973440650,0
+              15.012682035,44.973439946,0
+              15.012684019,44.982441908,0
+              15.000000000,44.982442612,0
+              15.000000000,44.973440650,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Mixed fixture covering the edge cases the API must handle gracefully.
+  All squares are built in UTM 33N and converted to lon/lat (see square_1km.kml).
+-->
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>mixed</name>
+    <Folder>
+      <name>areas</name>
+      <!-- MultiGeometry with two 1 km squares: ~2,001,600 m^2 -->
+      <Placemark>
+        <name>Two squares</name>
+        <MultiGeometry>
+          <Polygon>
+            <outerBoundaryIs><LinearRing><coordinates>
+              15.000000000,44.973440650,0 15.012682035,44.973439946,0 15.012684019,44.982441908,0 15.000000000,44.982442612,0 15.000000000,44.973440650,0
+            </coordinates></LinearRing></outerBoundaryIs>
+          </Polygon>
+          <Polygon>
+            <outerBoundaryIs><LinearRing><coordinates>
+              15.000000000,44.991444560,0 15.012686004,44.991443855,0 15.012687991,45.000445789,0 15.000000000,45.000446494,0 15.000000000,44.991444560,0
+            </coordinates></LinearRing></outerBoundaryIs>
+          </Polygon>
+        </MultiGeometry>
+      </Placemark>
+      <!-- 1 km square with a 500 m x 500 m hole: ~750,600 m^2 -->
+      <Placemark>
+        <name>Square with hole</name>
+        <Polygon>
+          <outerBoundaryIs><LinearRing><coordinates>
+            15.000000000,44.973440650,0 15.012682035,44.973439946,0 15.012684019,44.982441908,0 15.000000000,44.982442612,0 15.000000000,44.973440650,0
+          </coordinates></LinearRing></outerBoundaryIs>
+          <innerBoundaryIs><LinearRing><coordinates>
+            15.003170633,44.975691098,0 15.009511898,44.975690746,0 15.009512642,44.980191727,0 15.003170881,44.980192079,0 15.003170633,44.975691098,0
+          </coordinates></LinearRing></innerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>other</name>
+      <!-- 1 km line along the southern edge of the square: ~1,000.4 m -->
+      <Placemark>
+        <name>Line 1km</name>
+        <LineString>
+          <coordinates>15.000000000,44.973440650,0 15.012682035,44.973439946,0</coordinates>
+        </LineString>
+      </Placemark>
+      <!-- Points have no area or length: expected "unsupported" -->
+      <Placemark>
+        <name>A point</name>
+        <Point><coordinates>15.005,44.977,0</coordinates></Point>
+      </Placemark>
+      <!-- No geometry at all: expected "unsupported" -->
+      <Placemark>
+        <name>No geometry</name>
+        <description>Placemark without a geometry element</description>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
